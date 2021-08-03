@@ -5,6 +5,7 @@
 #include "VisualStyleStates.h"
 
 #include "StringUtil.h"
+#include <cstring>
 
 #define MSSTYLE_ARRAY_LENGTH(name) (sizeof(name) / sizeof(name[0]))
 

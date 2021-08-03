@@ -21,7 +21,7 @@ namespace libmsstyle
 
 		StyleProperty* FindPropertyByAddress(const StyleProperty* prop) const
 		{
-			for (auto& it = m_properties.begin(); it != m_properties.end(); ++it)
+			for (auto it = m_properties.begin(); it != m_properties.end(); ++it)
 				if (prop == *it)
 					return *it;
 
@@ -30,7 +30,7 @@ namespace libmsstyle
 
 		StyleProperty* FindPropertyByValue(const StyleProperty& prop) const
 		{
-			for (auto& it = m_properties.begin(); it != m_properties.end(); ++it)
+			for (auto it = m_properties.begin(); it != m_properties.end(); ++it)
 				if (prop == **it)
 					return *it;
 
@@ -44,7 +44,7 @@ namespace libmsstyle
 
 		void RemoveProperty(const StyleProperty* prop)
 		{
-			for (auto& it = m_properties.begin(); it != m_properties.end(); ++it)
+			for (auto it = m_properties.begin(); it != m_properties.end(); ++it)
 			{
 				if (*it == prop)
 				{

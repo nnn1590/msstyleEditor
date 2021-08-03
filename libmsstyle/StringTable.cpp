@@ -49,7 +49,7 @@ namespace libmsstyle
 
 	void StringTable::Remove(int id)
 	{
-		auto& it = impl->m_entries.find(id);
+		auto it = impl->m_entries.find(id);
 		if (it != impl->m_entries.end())
 		{
 			impl->m_entries.erase(it);

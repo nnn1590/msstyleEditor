@@ -15,7 +15,7 @@
 #include <cstdarg>
 
 #ifndef NDEBUG
-#include <Windows.h>
+#include <windows.h>
 #endif
 
 using namespace libmsstyle;
