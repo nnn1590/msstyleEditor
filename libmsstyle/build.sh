@@ -29,7 +29,7 @@ for _PREFIX in 'x86_64-w64-mingw32-' 'i686-w64-mingw32-'; do
 	for i in "${_FILES[@]}"; do
 		"${_PREFIX}g++${_SUFFIX}" -c ${SPECS} -D_WIN32_WINNT=0x0601 -DWINVER=0x0601 -std=c++11 -mwindows -D_CRT_SECURE_NO_WARNINGS -D_LIB -DUNICODE -D_UNICODE -municode -static-libgcc -static-libstdc++ "${i}" -Wno-narrowing &
 	done
-	wait -n
+	wait
 	"${_PREFIX}g++${_SUFFIX}" -o libmsstyle.dll ${SPECS} -D_WIN32_WINNT=0x0601 -DWINVER=0x0601 -std=c++11 -mwindows -D_CRT_SECURE_NO_WARNINGS -D_LIB -DUNICODE -D_UNICODE -municode -shared -static-libgcc -static-libstdc++ "${_FILES_OBJ[@]}" -Wno-narrowing
 	"${_PREFIX}ar" r libmsstyle.a "${_FILES_OBJ[@]}"
 	rm *.o
