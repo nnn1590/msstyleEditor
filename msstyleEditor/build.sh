@@ -36,7 +36,6 @@ for _PREFIX in 'x86_64-w64-mingw32-' 'i686-w64-mingw32-'; do
 	declare -a _FILES_OBJ=("${_FILES[@]/.cpp/.o}")
 	"${_PREFIX}windres" msstyleEditor.rc --output-format=coff -o "${_PREFIX}msstyleEditor${_SUFFIX}.res"
 	_FILES_OBJ+=("${_PREFIX}msstyleEditor${_SUFFIX}.res")
-	if [[ "${_PREFIX}" == 'x86_64-w64-mingw32-' ]]; then
 	case "${_PREFIX}" in
 		'x86_64-w64-mingw32-' ) _OUT="build/x86_64${_SUFFIX}"  ;;
 		'i686-w64-mingw32-'   ) _OUT="build/x86${_SUFFIX}"     ;;
