@@ -3,6 +3,8 @@ set -eu +f
 
 trap "kill 0" EXIT
 
+cd "$(cd "$(dirname "${BASH_SOURCE[0]:-${0}}")"; pwd)"
+
 rm -f *.dll *.exe *.o *.so *.a *.specs
 rm -rf build/
 
@@ -31,11 +33,7 @@ for _PREFIX in 'x86_64-w64-mingw32-' 'i686-w64-mingw32-'; do
 		exit 1
 	fi
 	"${_PREFIX}g++${_SUFFIX}" -dumpspecs | sed -e 's/-lmsvcrt/-lmsvcr120/g' > "${_PREFIX}g++${_SUFFIX}.specs"
-	set +u
-	if [[ ! "x${1}X" == "xX" ]]; then
-		SPECS='-specs='"${_PREFIX}g++${_SUFFIX}.specs"
-	fi
-	set -u
+	SPECS='-specs='"${_PREFIX}g++${_SUFFIX}.specs"
 	IFS=$'\n'
 	declare -a _FILES=($(grep 'ClCompile' msstyleEditor.vcxproj | grep -o '".*"' | sed -e 's/"//g'))
 	declare -a _FILES_OBJ=("${_FILES[@]/.cpp/.o}")
@@ -49,10 +47,10 @@ for _PREFIX in 'x86_64-w64-mingw32-' 'i686-w64-mingw32-'; do
 	IFS=''
 	for i in "${_FILES[@]}"; do
 		IFS="${_IFS_BACKUP}"
-		"${_PREFIX}g++${_SUFFIX}" -g3 -c ${SPECS} $(${_WXCONFIG} --cxxflags) ${OPT_A} -D_WIN32_WINNT="${_WINVER}" -DWINVER="${_WINVER}" -std=c++11 -static-libgcc -static-libstdc++ "${i}" -Wno-narrowing -I.. &
+		"${_PREFIX}g++${_SUFFIX}" -c ${SPECS} $(${_WXCONFIG} --cxxflags) ${OPT_A} -D_WIN32_WINNT="${_WINVER}" -DWINVER="${_WINVER}" -std=c++11 -static-libgcc -static-libstdc++ "${i}" -Wno-narrowing -I.. &
 	done
 	wait
-	"${_PREFIX}g++${_SUFFIX}" -g3 -o msstyleEditor.exe ${SPECS} $(${_WXCONFIG} --cxxflags) ${OPT_A} -D_WIN32_WINNT="${_WINVER}" -DWINVER="${_WINVER}" -std=c++11 -static -static-libgcc -static-libstdc++ "${_FILES_OBJ[@]}" -Wno-narrowing -L"../libmsstyle/${_OUT}" -lmsstyle $(${_WXCONFIG} --libs std,aui,propgrid)
+	"${_PREFIX}g++${_SUFFIX}" -o msstyleEditor.exe ${SPECS} $(${_WXCONFIG} --cxxflags) ${OPT_A} -D_WIN32_WINNT="${_WINVER}" -DWINVER="${_WINVER}" -std=c++11 -static -static-libgcc -static-libstdc++ "${_FILES_OBJ[@]}" -Wno-narrowing -L"../libmsstyle/${_OUT}" -lmsstyle $(${_WXCONFIG} --libs std,aui,propgrid)
 	rm *.o
 	mkdir build
 	mkdir -v "${_OUT}"

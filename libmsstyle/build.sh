@@ -3,6 +3,8 @@ set -eu +f
 
 trap "kill 0" EXIT
 
+cd "$(cd "$(dirname "${BASH_SOURCE[0]:-${0}}")"; pwd)"
+
 rm -f *.dll *.exe *.o *.so *.a *.specs
 rm -rf build/
 
@@ -17,11 +19,7 @@ for _PREFIX in 'x86_64-w64-mingw32-' 'i686-w64-mingw32-'; do
 	[[ "${_PREFIX}" == 'x86_64-w64-mingw32-' ]] && continue  # Skip x86_64 build
 	#[[ "${_PREFIX}" == 'i686-w64-mingw32-' ]] && continue  # Skip x86 build
 	"${_PREFIX}g++${_SUFFIX}" -dumpspecs | sed -e 's/-lmsvcrt/-lmsvcr120/g' > "${_PREFIX}g++${_SUFFIX}.specs"
-	set +u
-	if [[ ! "x${1}X" == "xX" ]]; then
-		SPECS='-specs='"${_PREFIX}g++${_SUFFIX}.specs"
-	fi
-	set -u
+	SPECS='-specs='"${_PREFIX}g++${_SUFFIX}.specs"
 	IFS=$'\n'
 	declare -a _FILES=($(grep 'ClCompile' libmsstyle.vcxproj | grep -o '".*"' | sed -e 's/"//g'))
 	declare -a _FILES_OBJ=("${_FILES[@]/.cpp/.o}")
