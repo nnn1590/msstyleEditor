@@ -1,6 +1,20 @@
 #include "HelpDialog.h"
 #include "resource.h"
 
+#ifdef __MINGW32__
+#ifndef  MAKEINTRESOURCE
+#define MAKEINTRESOURCE(i) ((LPSTR)((ULONG_PTR)(i)))
+#endif
+
+// https://docs.microsoft.com/en-us/windows/win32/menurc/resource-types
+// https://github.com/MicrosoftDocs/win32/blob/docs/desktop-src/menurc/resource-types.md
+// CC BY 4.0 (https://github.com/MicrosoftDocs/win32/blob/docs/LICENSE)
+#ifndef  RT_HTML
+#define RT_HTML MAKEINTRESOURCE(23)
+#endif
+#endif  // __MINGW32__
+
+
 #include <wx/colour.h>
 #include <wx/settings.h>
 #include <wx/string.h>

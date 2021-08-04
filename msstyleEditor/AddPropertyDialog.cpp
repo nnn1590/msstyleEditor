@@ -1,5 +1,5 @@
 #include "AddPropertyDialog.h"
-#include "libmsstyle\VisualStyleDefinitions.h"
+#include "libmsstyle/VisualStyleDefinitions.h"
 
 using namespace libmsstyle;
 
@@ -140,7 +140,8 @@ AddPropertyDialog::AddPropertyDialog(wxWindow* parent, wxWindowID id, const wxSt
 	okButton->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(AddPropertyDialog::OnOkClicked), NULL, this);
 	cancelButton->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(AddPropertyDialog::OnCancelClicked), NULL, this);
 
-	OnTypeSelectionChanged(wxCommandEvent());
+	wxCommandEvent dummy;
+	OnTypeSelectionChanged(dummy);
 }
 
 void AddPropertyDialog::OnTypeSelectionChanged(wxCommandEvent& event)
@@ -152,7 +153,7 @@ void AddPropertyDialog::OnTypeSelectionChanged(wxCommandEvent& event)
 		return;
 
 	int typeId = typeIdArray[selectedIndex];
-	for (auto& it = PROPERTY_INFO_MAP.begin(); it != PROPERTY_INFO_MAP.end(); ++it)
+	for (auto it = PROPERTY_INFO_MAP.begin(); it != PROPERTY_INFO_MAP.end(); ++it)
 	{
 		// Select all properties matching our type, but not the entry of the type itself
 		if (typeId == it->second.type &&

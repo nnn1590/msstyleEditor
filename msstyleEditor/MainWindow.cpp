@@ -12,12 +12,12 @@
 
 #include "wxPropertyCategoryToolbar.h"
 
-#include "libmsstyle\VisualStyle.h"
-#include "libmsstyle\StylePart.h"
+#include "libmsstyle/VisualStyle.h"
+#include "libmsstyle/StylePart.h"
 
-#include <wx\mstream.h>
-#include <wx\wfstream.h>
-#include <wx\wupdlock.h>
+#include <wx/mstream.h>
+#include <wx/wfstream.h>
+#include <wx/wupdlock.h>
 
 #include <algorithm>
 #include <string>
@@ -417,7 +417,8 @@ void MainWindow::OnClassViewTreeSelChanged(wxTreeEvent& event)
 		std::string file = currentStyle->GetQueuedResourceUpdate(selectedImageProp->GetResourceID(), type);
 		if (!file.empty())
 		{
-			ShowImageFromFile(wxString::FromUTF8(file.c_str()));
+			wxString wxstring = wxString::FromUTF8(file.c_str());
+			ShowImageFromFile(wxstring);
 
 			statusBar->SetStatusText(wxString::Format("C: %d, P: %d, Img: %d*", selection.ClassId, selection.PartId, selectedImageProp->GetResourceID()));
 		}
@@ -868,7 +869,7 @@ bool ContainsProperty(const SearchProperties& search, wxTreeItemData* treeItemDa
 					prop->data.positiontype.y);
 
 				std::string tmp = search.value;
-				tmp.erase(std::remove_if(tmp.begin(), tmp.end(), std::isspace), tmp.end());
+				tmp.erase(std::remove_if(tmp.begin(), tmp.end(), ::isspace), tmp.end());
 
 				if (ContainsStringInvariant(std::string(propPos), tmp))
 					return true;
@@ -882,7 +883,7 @@ bool ContainsProperty(const SearchProperties& search, wxTreeItemData* treeItemDa
 					prop->data.colortype.b);
 
 				std::string tmp = search.value;
-				tmp.erase(std::remove_if(tmp.begin(), tmp.end(), std::isspace), tmp.end());
+				tmp.erase(std::remove_if(tmp.begin(), tmp.end(), ::isspace), tmp.end());
 
 				if (ContainsStringInvariant(std::string(propColor), tmp))
 					return true;
@@ -897,7 +898,7 @@ bool ContainsProperty(const SearchProperties& search, wxTreeItemData* treeItemDa
 					prop->data.margintype.bottom);
 
 				std::string tmp = search.value;
-				tmp.erase(std::remove_if(tmp.begin(), tmp.end(), std::isspace), tmp.end());
+				tmp.erase(std::remove_if(tmp.begin(), tmp.end(), ::isspace), tmp.end());
 
 				if (ContainsStringInvariant(std::string(propMargin), tmp))
 					return true;
@@ -912,7 +913,7 @@ bool ContainsProperty(const SearchProperties& search, wxTreeItemData* treeItemDa
 					prop->data.recttype.bottom);
 
 				std::string tmp = search.value;
-				tmp.erase(std::remove_if(tmp.begin(), tmp.end(), std::isspace), tmp.end());
+				tmp.erase(std::remove_if(tmp.begin(), tmp.end(), ::isspace), tmp.end());
 
 				if (ContainsStringInvariant(std::string(propRect), tmp))
 					return true;

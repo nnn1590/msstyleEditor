@@ -1,5 +1,5 @@
 #pragma once
-#include <wx\wx.h>
+#include <wx/wx.h>
 
 class ImageViewCtrl : public wxScrolledWindow
 {

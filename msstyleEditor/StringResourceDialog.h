@@ -13,7 +13,7 @@
 #include <wx/sizer.h>
 #include <wx/dialog.h>
 
-#include <libmsstyle\StringTable.h>
+#include <libmsstyle/StringTable.h>
 
 class StringResourceDialog : public wxDialog
 {

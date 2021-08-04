@@ -1,8 +1,9 @@
 #include "Exporter.h"
-#include "libmsstyle\VisualStyle.h"
+#include "libmsstyle/VisualStyle.h"
 
 #include <string>
 #include <codecvt>
+#include <locale>
 
 
 std::string WStringToUTF8(const std::wstring& str)

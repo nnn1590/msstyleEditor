@@ -7,7 +7,8 @@ public:
 	virtual bool OnInit();
 };
 
-IMPLEMENT_APP(wxMyApp)
+wxDECLARE_APP(wxMyApp);
+wxIMPLEMENT_APP(wxMyApp);
 bool wxMyApp::OnInit()
 {
 	wxDisableAsserts();

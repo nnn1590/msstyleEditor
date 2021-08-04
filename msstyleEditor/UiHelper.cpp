@@ -1,11 +1,11 @@
 #include "UiHelper.h"
-#include "libmsstyle\VisualStyle.h"
-#include "libmsstyle\VisualStyleEnums.h"
-#include "libmsstyle\VisualStyleDefinitions.h"
+#include "libmsstyle/VisualStyle.h"
+#include "libmsstyle/VisualStyleEnums.h"
+#include "libmsstyle/VisualStyleDefinitions.h"
 
-#include <wx\menu.h>
-#include <wx\propgrid\property.h>
-#include <wx\propgrid\advprops.h>
+#include <wx/menu.h>
+#include <wx/propgrid/property.h>
+#include <wx/propgrid/advprops.h>
 
 #include <string>
 #include <codecvt>	// codecvt_utf8_utf16

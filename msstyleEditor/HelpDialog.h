@@ -2,6 +2,7 @@
 
 #include <wx/textctrl.h>
 #include <wx/dialog.h>
+#include <windows.h>
 
 class HelpDialog : public wxDialog
 {

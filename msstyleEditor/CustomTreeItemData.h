@@ -1,6 +1,6 @@
 #pragma once
 
-#include "wx\treebase.h"
+#include "wx/treebase.h"
 
 namespace libmsstyle
 {

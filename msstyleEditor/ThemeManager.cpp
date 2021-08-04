@@ -1,7 +1,7 @@
 #include "ThemeManager.h"
 #include "UxthemeUndocumented.h"
 
-#include "libmsstyle\VisualStyle.h"
+#include "libmsstyle/VisualStyle.h"
 
 #include <shlobj.h>	// SHGetKnownFolderPath()
 

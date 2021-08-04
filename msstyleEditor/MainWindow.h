@@ -4,16 +4,16 @@
 #include "SearchDialog.h"
 #include "ThemeManager.h"
 
-#include "libmsstyle\VisualStyle.h"
+#include "libmsstyle/VisualStyle.h"
 
 #include <unordered_map>
 
-#include <wx\wx.h>
-#include <wx\propgrid\propgrid.h>
-#include <wx\propgrid\advprops.h>
-#include <wx\splitter.h>
-#include <wx\treectrl.h>
-#include <wx\aui\aui.h>
+#include <wx/wx.h>
+#include <wx/propgrid/propgrid.h>
+#include <wx/propgrid/advprops.h>
+#include <wx/splitter.h>
+#include <wx/treectrl.h>
+#include <wx/aui/aui.h>
 
 class MainWindow : public wxFrame, public ISearchDialogListener
 {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "libmsstyle\VisualStyle.h"
-#include "libmsstyle\StyleProperty.h"
+#include "libmsstyle/VisualStyle.h"
+#include "libmsstyle/StyleProperty.h"
 
 #include <string>
 
